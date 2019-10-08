@@ -17,29 +17,48 @@
           </div>
         </b-form>
 
-        <CompostMarker
-          v-for="(charging,i) in $store.state.parkingMap.chargingStations"
-          :key="'c'+i"
-          :charging="charging"
-          :googleMap="googleRoute"
-          :visible="buttons[0].state"
-        />
 
-        <DechetterieMarker
-          v-for="(parking,i) in $store.state.parkingMap.parkingStations"
-          :key="'p'+i"
-          :parking="parking"
-          :googleMap="googleRoute"
-          :visible="buttons[1].state"
-        />
-
-        <ClothesMarker
-          v-for="(carPool,i) in $store.state.parkingMap.carPoolStations"
-          :key="'cP'+i"
-          :carPool="carPool"
-          :googleMap="googleRoute"
+       <l-marker
+          v-for="(clotheStation, i) in $store.state.recycable.clothesStations"
+          :lat-lng="[clotheStation.Latitude,clotheStation.Longitude]"
           :visible="buttons[2].state"
-        />
+        >
+          <l-popup style="text-align:center" class="popup_covoit">
+            <p
+              style="font-weight:bold;"
+              class="title text-left border-bottom pb-2"
+            >{{clotheStation.title.replace("Aire de covoiturage ","")}}</p>
+            <p class="text-left pt-2">
+              <i class="fas fa-directions"></i>
+              <a :href="googleMap(clotheStation.lat,clotheStation.lng)" target="_blank" class="adress">Itinéraire</a>
+            </p>
+          </l-popup>
+          <l-icon :icon-url="require('~/assets/images/shirt.png')" :icon-size="[30, 30]" :icon-anchor="[15,0]"></l-icon>
+        </l-marker>
+
+        <l-marker
+          v-for="(compostStation, i) in $store.state.recycable.compostStations"
+          :lat-lng="[compostStation.Latitude,compostStation.Longitude]"
+          :visible="buttons[0].state"
+        >
+          <l-popup style="text-align:center" id="ChargingMarkerVue">
+       
+          </l-popup>
+          <l-icon :icon-url="require('~/assets/images/plant.png')" :icon-size="[30, 30]" :icon-anchor="[15,0]"></l-icon>
+        </l-marker>
+
+        <l-marker
+          v-for="(trashStation, i) in $store.state.recycable.trashStations"
+          :lat-lng="[trashStation.geometry.coordinates[1],trashStation.geometry.coordinates[0]]"
+          :visible="buttons[1].state"
+        >
+          <l-popup style="text-align:center" id="ChargingMarkerVue">
+       
+          </l-popup>
+          <l-icon :icon-url="require('~/assets/images/garbage.png')" :icon-size="[30, 30]" :icon-anchor="[15,0]"></l-icon>
+        </l-marker>
+
+
         <l-marker v-if="markerLatLng" :lat-lng="markerLatLng"></l-marker>
         <Locatecontrol />
       </l-map>
@@ -53,7 +72,7 @@
           :pressed.sync="btn.state"
           variant="light"
           size="sm"
-          class="select_btn col-4 borderCentral pt-1"
+          class="select_btn_vert col-4 borderCentral pt-1"
         >
           <img :src="btn.icon" alt class="icon_filterbar" />
           <p class="text_filterbar mb-3">{{ btn.caption }}</p>
@@ -82,19 +101,17 @@
 <script>
 import { LMap, Lmarker } from 'vue2-leaflet'
 import Locatecontrol from '~/components/LocateControl'
-import CompostMarker from '~/components/CompostMarker.vue'
-import DechetterieMarker from '~/components/DechetterieMarker.vue'
-import ClothesMarker from '~/components/ClothesMarker.vue'
+
 import MapboxTile from '~/components/MapboxTile.vue'
 
 export default {
   components: {
     LMap,
     Locatecontrol,
-    CompostMarker,
-    DechetterieMarker,
-    MapboxTile,
-    ClothesMarker
+    MapboxTile
+  },
+  props: {
+    googleMap: { type: Function, required: true }
   },
   data() {
     return {
@@ -105,7 +122,7 @@ export default {
         {
           caption: 'Compost',
           state: false,
-          icon: require('~/assets/images/logo-compost.png')
+          icon: require('~/assets/images/plant.png')
         },
         {
           caption: 'Déchetterie',
@@ -115,7 +132,7 @@ export default {
         {
           caption: 'Habits',
           state: true,
-          icon: require('~/assets/images/logo-bouton.png')
+          icon: require('~/assets/images/shirt.png')
         }
       ]
     }
@@ -254,7 +271,7 @@ export default {
     border-radius: 0 10px 10px 0;
   }
 
-  .select_btn {
+  .select_btn_vert {
     background-color: transparent;
     height: 80px;
     border: transparent;
