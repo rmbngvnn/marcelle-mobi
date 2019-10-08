@@ -28,9 +28,15 @@
               style="font-weight:bold;"
               class="title text-left border-bottom pb-2"
             >{{clotheStation.title.replace("Aire de covoiturage ","")}}</p>
+            <p
+              class="text-left"
+            >{{clotheStation.address.replace("Aire de covoiturage ","")}}</p>
+            <p
+              class="text-left"
+            >{{clotheStation.phone.replace("Aire de covoiturage ","")}}</p>
             <p class="text-left pt-2">
               <i class="fas fa-directions"></i>
-              <a :href="googleMap(clotheStation.lat,clotheStation.lng)" target="_blank" class="adress">Itinéraire</a>
+              <a :href="googleRoute(clotheStation.Latitude,clotheStation.Longitude)" target="_blank" class="adress">Itinéraire</a>
             </p>
           </l-popup>
           <l-icon :icon-url="require('~/assets/images/shirt.png')" :icon-size="[30, 30]" :icon-anchor="[15,0]"></l-icon>
@@ -41,8 +47,21 @@
           :lat-lng="[compostStation.Latitude,compostStation.Longitude]"
           :visible="buttons[0].state"
         >
-          <l-popup style="text-align:center" id="ChargingMarkerVue">
-       
+          <l-popup style="text-align:center" class="popup_covoit">
+            <p
+              style="font-weight:bold;"
+              class="title text-left border-bottom pb-2"
+            >{{compostStation.title}}</p>
+            <p
+              class="text-left"
+            >{{compostStation.address}}</p>
+            <p
+              class="text-left"
+            >{{compostStation.contact}}</p>
+            <p class="text-left pt-2">
+              <i class="fas fa-directions"></i>
+              <a :href="googleRoute(compostStation.Latitude,compostStation.Longitude)" target="_blank" class="adress">Itinéraire</a>
+            </p>
           </l-popup>
           <l-icon :icon-url="require('~/assets/images/plant.png')" :icon-size="[30, 30]" :icon-anchor="[15,0]"></l-icon>
         </l-marker>
@@ -52,8 +71,21 @@
           :lat-lng="[trashStation.geometry.coordinates[1],trashStation.geometry.coordinates[0]]"
           :visible="buttons[1].state"
         >
-          <l-popup style="text-align:center" id="ChargingMarkerVue">
-       
+          <l-popup style="text-align:center" class="popup_covoit">
+            <p
+              style="font-weight:bold;"
+              class="title text-left border-bottom pb-2"
+            >{{trashStation.fields.nom_decheterie}}</p>
+            <p
+              class="text-left"
+            >{{trashStation.fields.adresse_decheterie}}</p>
+            <p
+              class="text-left"
+            >{{trashStation.fields.telephone}}</p>
+            <p class="text-left pt-2">
+              <i class="fas fa-directions"></i>
+              <a :href="googleRoute(trashStation.geometry.coordinates[1],trashStation.geometry.coordinates[0])" target="_blank" class="adress">Itinéraire</a>
+            </p>
           </l-popup>
           <l-icon :icon-url="require('~/assets/images/garbage.png')" :icon-size="[30, 30]" :icon-anchor="[15,0]"></l-icon>
         </l-marker>
@@ -93,7 +125,7 @@
           <img src="~/assets/images/mpm.png" style="width:100%" alt />
         </b-modal>
       </div>
-      <!-- Fin Block -->
+      
     </div>
   </div>
 </template>
@@ -109,9 +141,6 @@ export default {
     LMap,
     Locatecontrol,
     MapboxTile
-  },
-  props: {
-    googleMap: { type: Function, required: true }
   },
   data() {
     return {
