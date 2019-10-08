@@ -18,6 +18,7 @@
 <script>
 import { LMarker, LIcon } from 'vue2-leaflet'
 import { icon } from 'leaflet'
+
 export default {
   components: { LMarker, LIcon },
   props: {
@@ -29,7 +30,7 @@ export default {
     return {
       iconColor: {},
       marker: {
-        image: require('~/assets/images/covoit.svg')
+        image: require('~/assets/images/logo-bouton.png')
       }
     }
   },
@@ -39,6 +40,7 @@ export default {
 <style lang="scss">
 .popup_covoit {
   width: 200px !important;
+
   p {
     font-size: 14px;
   }
@@ -47,14 +49,17 @@ export default {
     font-size: 24px;
     margin-bottom: 0px;
   }
+
   .adress {
     color: #0e5da4 !important;
   }
+
   .fas {
     color: #0e5da4;
     width: 17px;
   }
 }
+
 .leaflet-marker-icon {
   min-width: 30px !important;
   min-height: 30px !important;

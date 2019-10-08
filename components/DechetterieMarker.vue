@@ -34,6 +34,7 @@
 <script>
 import { LMarker, LIcon } from 'vue2-leaflet'
 import { icon } from 'leaflet'
+
 export default {
   components: { LMarker, LIcon },
   props: {
@@ -44,7 +45,7 @@ export default {
   data() {
     return {
       marker: {
-        image: require('~/assets/images/parking_marker.svg')
+        image: require('~/assets/images/garbage.png')
       }
     }
   }
@@ -57,6 +58,7 @@ export default {
     font-size: 24px !important;
     margin-bottom: 0px;
   }
+
   .address {
     color: #0e5da4 !important;
     font-size: 16px;
@@ -64,6 +66,7 @@ export default {
     font-style: italic;
     text-align: left !important;
   }
+
   .leaflet-container a {
     color: rgba(0, 0, 0, 0.8) !important;
     font-size: 16px;
@@ -72,18 +75,22 @@ export default {
     text-align: left !important;
     text-decoration: none;
   }
+
   .far,
   .fas {
     color: #0e5da4;
     width: 17px;
   }
+
   p {
     font-size: 14px;
   }
+
   .leaflet-container a {
     color: rgba(0, 0, 0, 0.8) !important;
   }
 }
+
 .leaflet-container a {
   color: rgba(0, 0, 0, 0.8) !important;
 }
