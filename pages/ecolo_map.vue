@@ -36,7 +36,7 @@
             >{{clotheStation.phone.replace("Aire de covoiturage ","")}}</p>
             <p class="text-left pt-2">
               <i class="fas fa-directions"></i>
-              <a :href="googleRoute(clotheStation.Latitude,clotheStation.Longitude)" target="_blank" class="adress">Itinéraire</a>
+              <a :href="googleRoute(clotheStation.address)" target="_blank" class="adress">Itinéraire</a>
             </p>
           </l-popup>
           <l-icon :icon-url="require('~/assets/images/shirt.png')" :icon-size="[30, 30]" :icon-anchor="[15,0]"></l-icon>
@@ -60,7 +60,7 @@
             >{{compostStation.contact}}</p>
             <p class="text-left pt-2">
               <i class="fas fa-directions"></i>
-              <a :href="googleRoute(compostStation.Latitude,compostStation.Longitude)" target="_blank" class="adress">Itinéraire</a>
+              <a :href="googleRoute(compostStation.address)" target="_blank" class="adress">Itinéraire</a>
             </p>
           </l-popup>
           <l-icon :icon-url="require('~/assets/images/plant.png')" :icon-size="[30, 30]" :icon-anchor="[15,0]"></l-icon>
@@ -84,7 +84,7 @@
             >{{trashStation.fields.telephone}}</p>
             <p class="text-left pt-2">
               <i class="fas fa-directions"></i>
-              <a :href="googleRoute(trashStation.geometry.coordinates[1],trashStation.geometry.coordinates[0])" target="_blank" class="adress">Itinéraire</a>
+              <a :href="googleRoute(trashStation.fields.adresse_decheterie)" target="_blank" class="adress">Itinéraire</a>
             </p>
           </l-popup>
           <l-icon :icon-url="require('~/assets/images/garbage.png')" :icon-size="[30, 30]" :icon-anchor="[15,0]"></l-icon>
@@ -174,9 +174,9 @@ export default {
       const coord = { latitude: center.lat, longitude: center.lng }
       this.$store.dispatch('parkingMap/fetchChargingStations', coord)
     },
-    googleRoute(lat, long) {
+    googleRoute(addre) {
       return (
-        'https://www.google.com/maps/search/?api=1&query=' + lat + ',' + long
+        'https://www.google.com/maps/search/?api=1&query=' + addre
       )
     },
     getMpmAddress(addresses) {
