@@ -23,7 +23,7 @@
           :lat-lng="[clotheStation.Latitude,clotheStation.Longitude]"
           :visible="buttons[2].state"
         >
-          <l-popup style="text-align:center;word-break: break-all;" class="popup_covoit">
+          <l-popup style="text-align:center;" class="verte">
             <p
               style="font-weight:bold;"
               class="title text-left border-bottom pb-2"
@@ -47,7 +47,7 @@
           :lat-lng="[compostStation.Latitude,compostStation.Longitude]"
           :visible="buttons[0].state"
         >
-          <l-popup style="text-align:center;word-break: break-all;" class="popup_covoit">
+          <l-popup style="text-align:center" class="verte">
             <p
               style="font-weight:bold;"
               class="title text-left border-bottom pb-2"
@@ -71,7 +71,7 @@
           :lat-lng="[trashStation.geometry.coordinates[1],trashStation.geometry.coordinates[0]]"
           :visible="buttons[1].state"
         >
-          <l-popup style="text-align:center;     word-break: break-all;" class="popup_covoit">
+          <l-popup style="text-align:center;" class="verte">
             <p
               style="font-weight:bold; "
               class="title text-left border-bottom pb-2"
@@ -227,6 +227,40 @@ export default {
 <style lang="scss">
 .mt-3 > .form-inline {
   display: inline-block;
+}
+
+.verte {
+  .title {
+    color: rgba(0, 0, 0, 0.8) !important;
+    font-size: 24px !important;
+    margin-bottom: 0px;
+  }
+  .address {
+    color: #0e5da4 !important;
+    font-size: 16px;
+    margin-top: 0px;
+    font-style: italic;
+    text-align: left !important;
+  }
+  .leaflet-container a {
+    color: rgba(0, 0, 0, 0.8) !important;
+    font-size: 16px;
+    margin-top: 0px;
+    font-style: italic;
+    text-align: left !important;
+    text-decoration: none;
+  }
+  .far,
+  .fas {
+    color: #0e5da4;
+    width: 17px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .leaflet-container a {
+    color: rgba(0, 0, 0, 0.8) !important;
+  }
 }
 
 #parkingMapPage {
