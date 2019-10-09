@@ -23,7 +23,7 @@
           :lat-lng="[clotheStation.Latitude,clotheStation.Longitude]"
           :visible="buttons[2].state"
         >
-          <l-popup style="text-align:center" class="popup_covoit">
+          <l-popup style="text-align:center;word-break: break-all;" class="popup_covoit">
             <p
               style="font-weight:bold;"
               class="title text-left border-bottom pb-2"
@@ -47,7 +47,7 @@
           :lat-lng="[compostStation.Latitude,compostStation.Longitude]"
           :visible="buttons[0].state"
         >
-          <l-popup style="text-align:center" class="popup_covoit">
+          <l-popup style="text-align:center;word-break: break-all;" class="popup_covoit">
             <p
               style="font-weight:bold;"
               class="title text-left border-bottom pb-2"
@@ -71,16 +71,16 @@
           :lat-lng="[trashStation.geometry.coordinates[1],trashStation.geometry.coordinates[0]]"
           :visible="buttons[1].state"
         >
-          <l-popup style="text-align:center" class="popup_covoit">
+          <l-popup style="text-align:center;     word-break: break-all;" class="popup_covoit">
             <p
-              style="font-weight:bold;"
+              style="font-weight:bold; "
               class="title text-left border-bottom pb-2"
             >{{trashStation.fields.nom_decheterie}}</p>
             <p
               class="text-left"
             >{{trashStation.fields.adresse_decheterie}}</p>
             <p
-              class="text-left"
+             class="text-left"
             >{{trashStation.fields.telephone}}</p>
             <p class="text-left pt-2">
               <i class="fas fa-directions"></i>

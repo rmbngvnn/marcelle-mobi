@@ -53,18 +53,6 @@ export default {
           }
         },
         {
-          title: 'La map écolo',
-          href: '/ecolo_map',
-          hiddenOnCollapse: true,
-          icon: {
-            element: 'img',
-            class: 'icon-sidebar',
-            attributes: {
-              src: require('~/assets/images/ecolo.png')
-            }
-          }
-        },
-        {
           title: 'Se garer / Se Recharger',
           href: '/parking-map',
           hiddenOnCollapse: true,
@@ -73,6 +61,19 @@ export default {
             class: 'icon-sidebar',
             attributes: {
               src: require('~/assets/images/elec_car.svg')
+            }
+          }
+        },
+        {
+          title: 'La map écolo',
+          href: '/ecolo_map',
+          class: 'vert',
+          hiddenOnCollapse: true,
+          icon: {
+            element: 'img',
+            class: 'icon-sidebar',
+            attributes: {
+              src: require('~/assets/images/ecolo.png')
             }
           }
         },
@@ -181,6 +182,10 @@ export default {
     font-size: 30%;
     width: 10%;
     margin: 1vh 1vw 1vh auto;
+  }
+
+  .vert:hover {
+    background-color: #45B549;
   }
 
   a:hover {
